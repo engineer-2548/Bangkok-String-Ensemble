@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangkok String Ensemble x กองปราบ ปณิธาน @ BACC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'wave': 'wave 2s ease-in-out infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'fade-in': 'fadeIn 1s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'slide-left': 'slideLeft 0.8s ease-out',
+                        'slide-right': 'slideRight 0.8s ease-out',
+                        'scale-up': 'scaleUp 0.5s ease-out',
+                        'music-note': 'musicNote 4s ease-in-out infinite',
+                        'rotate-slow': 'rotateSlow 8s linear infinite',
+                        'gradient-shift': 'gradientShift 6s ease infinite',
+                    },
+                    keyframes: {
+                        wave: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-15px) rotate(5deg)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(50px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        slideRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        scaleUp: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        musicNote: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '25%': { transform: 'translateY(-10px) rotate(5deg)' },
+                            '75%': { transform: 'translateY(-5px) rotate(-3deg)' },
+                        },
+                        rotateSlow: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' },
+                        },
+                        gradientShift: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        body { 
+            font-family: 'Noto Sans Thai', sans-serif;
+        }
+        
+        .font-display { 
+            font-family: 'Playfair Display', serif; 
+        }
+        
+        .music-bg {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+        
+        .glass-card {
+            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        
+        .dark .glass-card {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+        }
+        
+        .text-music-gradient {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .card-hover:hover {
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+        }
+        
+        .note-float {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(102, 126, 234, 0.3);
+            pointer-events: none;
+            animation: musicNote 4s ease-in-out infinite;
+        }
+        
+        .note-float:nth-child(2n) {
+            animation-delay: 1s;
+            color: rgba(118, 75, 162, 0.3);
+        }
+        
+        .note-float:nth-child(3n) {
+            animation-delay: 2s;
+            color: rgba(240, 147, 251, 0.3);
+        }
+        
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ripple::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .ripple:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape:nth-child(odd) {
+            animation-direction: reverse;
+            animation-duration: 8s;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-900 dark:to-indigo-900 transition-colors duration-700">
+    
+    <!-- Theme Toggle -->
+    <button id="themeToggle" class="fixed top-6 right-6 z-50 p-4 glass-card rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 group">
+        <svg id="sunIcon" class="w-6 h-6 text-amber-500 dark:hidden transition-transform group-hover:rotate-180 duration-300" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+        </svg>
+        <svg id="moonIcon" class="w-6 h-6 text-indigo-400 hidden dark:block transition-transform group-hover:rotate-180 duration-300" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+        </svg>
+    </button>
+
+    <!-- Floating Musical Notes -->
+    <div class="floating-shapes">
+        <div class="note-float" style="top: 10%; left: 10%;">🎵</div>
+        <div class="note-float" style="top: 20%; right: 15%;">🎶</div>
+        <div class="note-float" style="top: 60%; left: 5%;">🎼</div>
+        <div class="note-float" style="bottom: 20%; right: 10%;">🎻</div>
+        <div class="note-float" style="top: 80%; left: 20%;">🎺</div>
+        <div class="note-float" style="top: 40%; right: 5%;">🎹</div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 music-bg opacity-20"></div>
+        
+        <!-- Decorative Elements -->
+        <div class="absolute top-20 left-20 w-40 h-40 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
+        <div class="absolute top-60 right-20 w-32 h-32 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-40 left-40 w-36 h-36 bg-gradient-to-r from-pink-400 to-red-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 1s;"></div>
+
+        <div class="relative z-10 text-center px-6 max-w-7xl mx-auto">
+            <!-- Heart Icon -->
+            <div class="animate-scale-up mb-8">
+                <div class="text-6xl md:text-8xl animate-pulse-slow">❤️</div>
+            </div>
+
+            <!-- Main Title -->
+            <div class="animate-fade-in mb-8">
+                <h1 class="text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 text-gray-700 dark:text-gray-300">
+                    บ่ายวันเสาร์นี้...เชิญชวนไปฟังดนตรีและเดินเที่ยวหอศิลป์
+                </h1>
+                <div class="text-xl md:text-2xl font-medium text-purple-600 dark:text-purple-400">
+                    โดย <span class="font-display font-bold text-music-gradient">Bangkok String Ensemble</span>
+                </div>
+                <div class="text-lg md:text-xl font-medium text-indigo-600 dark:text-indigo-400 mt-2">
+                    Feat. <span class="font-bold text-gradient">กองปราบ ปณิธาน</span>
+                </div>
+            </div>
+
+            <!-- Event Description -->
+            <div class="animate-slide-up mb-12" style="animation-delay: 0.3s;">
+                <div class="glass-card rounded-3xl p-8 md:p-12 max-w-4xl mx-auto">
+                    <h2 class="text-xl md:text-2xl font-display font-bold text-gradient mb-6">
+                        "กิจกรรมอนุรักษ์ ฟื้นฟู และเผยแพร่ศิลปะการดนตรี<br>เพื่อประชาชนกรุงเทพมหานคร"
+                    </h2>
+                    <div class="flex justify-center">
+                        <div class="text-4xl md:text-6xl animate-rotate-slow">🎼</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="animate-slide-up" style="animation-delay: 0.6s;">
+                <button class="ripple bg-gradient-to-r from-purple-600 via-pink-600 to-red-500 hover:from-pink-600 hover:via-red-500 hover:to-orange-500 text-white font-bold py-4 px-10 rounded-full text-lg md:text-xl shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    🎻 เข้าร่วมงานดนตรี 🎶
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-display font-bold text-center mb-16 text-gradient animate-fade-in">
+                🎭 รายละเอียดงาน
+            </h2>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Date & Time Card -->
+                <div class="glass-card rounded-3xl p-8 card-hover animate-slide-left">
+                    <div class="text-center">
+                        <div class="text-5xl mb-6 animate-bounce-slow">📅</div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white font-display">วันและเวลา</h3>
+                        <div class="space-y-3">
+                            <p class="text-lg font-semibold text-purple-600 dark:text-purple-400">
+                                วันเสาร์ที่ 12 กรกฎาคม 2568
+                            </p>
+                            <p class="text-lg text-gray-600 dark:text-gray-300">
+                                เริ่มเวลา <span class="font-bold text-pink-600 dark:text-pink-400">13.00 น.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location Card -->
+                <div class="glass-card rounded-3xl p-8 card-hover animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="text-center">
+                        <div class="text-5xl mb-6 animate-float">🏛️</div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white font-display">สถานที่</h3>
+                        <div class="space-y-3">
+                            <p class="text-lg font-semibold text-indigo-600 dark:text-indigo-400">
+                                ห้องโถง ชั้น 1
+                            </p>
+                            <p class="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                                หอศิลปวัฒนธรรม<br>แห่งกรุงเทพมหานคร
+                            </p>
+                            <p class="text-lg font-bold text-blue-600 dark:text-blue-400">BACC</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Artists Card -->
+                <div class="glass-card rounded-3xl p-8 card-hover animate-slide-right" style="animation-delay: 0.4s;">
+                    <div class="text-center">
+                        <div class="text-5xl mb-6 animate-music-note">🎻</div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white font-display">ศิลปิน</h3>
+                        <div class="space-y-4">
+                            <div class="p-3 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-800 dark:to-pink-800 rounded-xl">
+                                <p class="font-bold text-purple-700 dark:text-purple-300">Bangkok String Ensemble</p>
+                            </div>
+                            <div class="text-lg font-semibold text-gray-600 dark:text-gray-400">Feat.</div>
+                            <div class="p-3 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-800 dark:to-indigo-800 rounded-xl">
+                                <p class="font-bold text-blue-700 dark:text-blue-300">กองปราบ ปณิธาน</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="py-20 px-6 bg-white/30 dark:bg-black/30 backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-6 text-gradient animate-fade-in">
+                    🎶 ไฮไลท์งาน
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                    ร่วมสัมผัสประสบการณ์ดนตรีคลาสสิกและการเดินชมงานศิลปะในบรรยากาศที่อบอุ่น
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-card rounded-2xl p-6 card-hover animate-slide-up">
+                    <div class="text-4xl mb-4 animate-float">🎼</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">ดนตรีคลาสสิก</h3>
+                    <p class="text-gray-600 dark:text-gray-300">เพลงคลาสสิกจากวง String Ensemble มืออาชีพ</p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 card-hover animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="text-4xl mb-4 animate-float" style="animation-delay: 1s;">🎨</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">ชมงานศิลปะ</h3>
+                    <p class="text-gray-600 dark:text-gray-300">เดินเที่ยวชมนิทรรศการในหอศิลป์ BACC</p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 card-hover animate-slide-up md:col-span-2 lg:col-span-1" style="animation-delay: 0.4s;">
+                    <div class="text-4xl mb-4 animate-float" style="animation-delay: 2s;">🤝</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">เข้าชมฟรี</h3>
+                    <p class="text-gray-600 dark:text-gray-300">กิจกรรมเพื่อประชาชน เข้าร่วมได้โดยไม่เสียค่าใช้จ่าย</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-display font-bold mb-12 text-gradient animate-fade-in">
+                📍 แผนที่และการเดินทาง
+            </h2>
+            
+            <div class="glass-card rounded-3xl p-8 md:p-12 animate-scale-up">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="text-2xl">🚇</div>
+                            <div class="text-left">
+                                <p class="font-semibold text-gray-800 dark:text-white">BTS</p>
+                                <p class="text-gray-600 dark:text-gray-300">สถานีชิดลม หรือ สถานีสยาม</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="text-2xl">🚌</div>
+                            <div class="text-left">
+                                <p class="font-semibold text-gray-800 dark:text-white">รถเมล์</p>
+                                <p class="text-gray-600 dark:text-gray-300">สาย 15, 47, 54, 204</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="text-2xl">🚗</div>
+                            <div class="text-left">
+                                <p class="font-semibold text-gray-800 dark:text-white">ที่จอดรถ</p>
+                                <p class="text-gray-600 dark:text-gray-300">มีบริการที่จอดรถในอาคาร</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-6xl md:text-8xl animate-pulse-slow">🏛️</div>
+                </div>
+                
+                <div class="mt-8 p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900 dark:to-purple-900 rounded-xl">
+                    <p class="text-sm md:text-base text-gray-700 dark:text-gray-300">
+                        <strong>ที่อยู่:</strong> 939 ถนนพระราม 1 แขวงวังใหม่ เขตปทุมวัน กรุงเทพฯ 10330
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-card rounded-3xl p-8 md:p-12 text-center animate-fade-in">
+                <div class="text-4xl md:text-6xl mb-6 animate-music-note">🎵</div>
+                <h3 class="text-2xl md:text-3xl font-display font-bold mb-4 text-gradient">
+                    พบกันบ่ายวันเสาร์นี้
+                </h3>
+                <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                    ที่หอศิลปวัฒนธรรมแห่งกรุงเทพมหานคร (BACC)
+                </p>
+                <div class="text-sm text-gray-500 dark:text-gray-400">
+                    <p>© 2025 Bangkok Art & Culture Centre</p>
+                    <p class="mt-2">สร้างด้วยความรักในศิลปะและดนตรี 🎼❤️</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Load saved theme or default to light
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.classList.toggle('dark', savedTheme === 'dark');
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            
+            // Add spin animation
+            themeToggle.style.transform = 'rotate(360deg)';
+            setTimeout(() => {
+                themeToggle.style.transform = 'rotate(0deg)';
+            }, 300);
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translate(0, 0) scale(1)';
+                    
+                    // Add stagger effect for multiple elements
+                    const siblings = Array.from(entry.target.parentNode.children);
+                    const index = siblings.indexOf(entry.target);
+                    entry.target.style.animationDelay = `${index * 0.1}s`;
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.animate-slide-up, .animate-fade-in, .animate-slide-left, .animate-slide-right, .animate-scale-up').forEach(el => {
+            el.style.opacity = '0';
+            if (el.classList.contains('animate-slide-up')) {
+                el.style.transform = 'translateY(50px)';
+            } else if (el.classList.contains('animate-slide-left')) {
+                el.style.transform = 'translateX(-50px)';
+            } else if (el.classList.contains('animate-slide-right')) {
+                el.style.transform = 'translateX(50px)';
+            } else if (el.classList.contains('animate-scale-up')) {
+                el.style.transform = 'scale(0.8)';
+            }
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+
+        // Interactive card effects
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.filter = 'brightness(1.05)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.filter = 'brightness(1)';
+            });
+        });
+
+        // Ripple effect for buttons
+        document.querySelectorAll('.ripple').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('absolute', 'bg-white', 'rounded-full', 'opacity-30', 'pointer-events-none');
+                ripple.style.animation = 'ping 0.6s ease-out';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect to floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelectorAll('.note-float');
+            const speed = 0.5;
+
+            parallax.forEach(element => {
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+
+        // Add entrance animation on page load
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('using-keyboard');
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('using-keyboard');
+        });
+    </script>
+</body>
+</html>
